@@ -1,0 +1,32 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mocha Tests</title>
+  <link rel="stylesheet" href="../node_modules/grunt-mocha/node_modules/mocha/mocha.css" />
+</head>
+<body>
+  <!-- Prep for Mocha -->
+  <div id="mocha"></div>
+  <script src="../node_modules/grunt-mocha/node_modules/mocha/mocha.js"></script>
+  <script src="../node_modules/expect.js/index.js"></script>
+  <script>mocha.setup('bdd')</script>
+  <script src="../node_modules/grunt-mocha/phantomjs/bridge.js"></script>
+
+  <!-- JS Lib Requirements  -->
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
+  <script src="stubs.js"></script>
+  <!-- JS Lib to test -->
+  <script src="../my-module.js"></script>
+
+  <!-- Spec Files -->
+  <script src="tests.js"></script>
+
+
+  <script>
+    mocha
+      .checkLeaks()
+      .globals(['jQuery*', 'Drupal'])
+      .run();
+  </script>
+</body>
+</html>

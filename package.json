@@ -1,0 +1,23 @@
+{
+  "name": "My-Module-Name",
+  "version": "1.0.0",
+  "description": "Your module does something",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "author": "Rob Colburn <rob@robcolburn.com>",
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-mocha": "~0.4.10",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-contrib-jshint": "^0.8.0",
+    "grunt-contrib-uglify": "^0.3.2",
+    "load-grunt-tasks": "~0.4.0",
+    "jquery": "~2.1.0",
+    "mocha": "~1.18.2",
+    "expect.js": "~0.3.1"
+  }
+}
