@@ -1,5 +1,4 @@
-Framework = {
-  fakeMethod: function () {
-    return Math.random();
-  }
+var Drupal = {
+  settings: {},
+  behaviors: {}
 };

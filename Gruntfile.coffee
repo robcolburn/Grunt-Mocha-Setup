@@ -5,19 +5,22 @@ module.exports = (grunt) ->
       test:
         files: [
           'Gruntfile.coffee'
-          '*.js'
+          'js/*.js'
           'test/*.js'
-          '!*.min.js'
+          'test/*.html'
+          '!js/*.min.js'
         ]
         tasks: [
-          'jshint'
-          'test'
+          'jshint:all'
+          'mocha:all'
           'uglify:all'
         ]
+    concurrent:
+      test: ['jshint:all', 'mocha:all']
     jshint:
       all: [
-        '*.js'
-        '!*.min.js'
+        'js/*.js'
+        '!js/*.min.js'
         'test/*.js'
       ]
       options:
@@ -27,24 +30,36 @@ module.exports = (grunt) ->
           Drupal: true
     uglify:
       all:
-        options:
-          mangle: true
-          compress: true
         files: [
           expand: true
-          # cwd: 'js'
-          # dest: 'js'
-          src: '*.js'
+          cwd: 'js'
+          dest: 'js'
+          src: [
+            '*.js'
+            '!*.min.js'
+          ]
           ext: '.min.js'
+          extDot: 'last'
         ]
     mocha:
       all:
         src: 'test/**.html'
         options:
           reporter: 'Spec'
+          run: true
+          log: true
+    connect:
+      testUrls:
+        options:
+          port: 8981
+          base: '.'
+      testDest:
+        options:
+          port: 8982
+          base: '.'
 
   grunt.task.registerTask 'test', [
-    'mocha:all'
+    'concurrent:test'
   ]
 
   # By default, lint and run all tests.

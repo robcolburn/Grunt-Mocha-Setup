@@ -2,31 +2,31 @@
 <head>
   <meta charset="utf-8">
   <title>Mocha Tests</title>
-  <link rel="stylesheet" href="../node_modules/grunt-mocha/node_modules/mocha/mocha.css" />
+  <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
 </head>
 <body>
   <!-- Prep for Mocha -->
   <div id="mocha"></div>
-  <script src="../node_modules/grunt-mocha/node_modules/mocha/mocha.js"></script>
+  <script src="../node_modules/mocha/mocha.js"></script>
   <script src="../node_modules/expect.js/index.js"></script>
   <script>mocha.setup('bdd')</script>
-  <script src="../node_modules/grunt-mocha/phantomjs/bridge.js"></script>
 
   <!-- JS Lib Requirements  -->
   <script src="../node_modules/jquery/dist/jquery.js"></script>
   <script src="stubs.js"></script>
   <!-- JS Lib to test -->
-  <script src="../my-module.js"></script>
+  <script src="../js/my-module.js"></script>
 
   <!-- Spec Files -->
-  <script src="tests.js"></script>
+  <script src="my-module.js"></script>
 
 
   <script>
-    mocha
-      .checkLeaks()
-      .globals(['jQuery*', 'Drupal'])
-      .run();
+    mocha.checkLeaks();
+    mocha.globals(['jQuery*', 'Drupal']);
+    if (navigator.userAgent.indexOf('PhantomJS') < 0) {
+      mocha.run();
+    }
   </script>
 </body>
 </html>
